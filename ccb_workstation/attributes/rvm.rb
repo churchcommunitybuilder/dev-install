@@ -1,4 +1,4 @@
-node.default["rvm"]= {
+node.override["rvm"]= {
   "rubies" => {
       # gcc-4.2 is available from the osx-gcc project on github. We dont install it
       # as it overwrites later versions of files provided by xcode.
