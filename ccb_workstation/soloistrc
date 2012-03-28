@@ -1,0 +1,7 @@
+cookbook_paths:
+- ../
+
+recipes:
+- pivotal_workstation::java
+- pivotal_workstation::homebrew
+- pivotal_workstation::rvm
