@@ -10,5 +10,5 @@ recipes:
 - pivotal_workstation::ack
 - ccb_workstation::ctags
 - ccb_workstation::s3cmd
-- pivotal_workstation::yuicompressor
+- ccb_workstation::yuicompressor
 - pivotal_workstation::imagemagick
