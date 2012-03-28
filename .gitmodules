@@ -1,6 +1,3 @@
-[submodule "ccd_workstation"]
-	path = ccd_workstation
-	url = https://github.com/cloud-city-development/ccd_workstation.git
 [submodule "pivotal_workstation"]
 	path = pivotal_workstation
 	url = https://github.com/pivotal/pivotal_workstation.git
