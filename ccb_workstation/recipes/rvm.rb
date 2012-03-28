@@ -1,6 +1,4 @@
-include_recipe "pivotal_workstation::java"
 include_recipe "pivotal_workstation::bash_profile"
-include_recipe "pivotal_workstation::git"
 
 rvm_git_revision_hash  = version_string_for("rvm")
 
