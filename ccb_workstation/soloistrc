@@ -9,6 +9,6 @@ recipes:
 - ccb_workstation::git
 - pivotal_workstation::ack
 - ccb_workstation::ctags
-- pivotal_workstation::s3cmd
+- ccb_workstation::s3cmd
 - pivotal_workstation::yuicompressor
 - pivotal_workstation::imagemagick
