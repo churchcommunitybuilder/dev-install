@@ -8,7 +8,7 @@ recipes:
 #- ccb_workstation::vim
 - ccb_workstation::git
 - pivotal_workstation::ack
-- pivotal_workstation::ctags
+- ccb_workstation::ctags
 - pivotal_workstation::s3cmd
 - pivotal_workstation::yuicompressor
 - pivotal_workstation::imagemagick
