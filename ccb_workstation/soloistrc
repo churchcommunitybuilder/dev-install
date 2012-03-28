@@ -5,4 +5,5 @@ recipes:
 - pivotal_workstation::java
 - pivotal_workstation::homebrew
 - ccb_workstation::rvm
-- ccb_workstation::vim
+#- ccb_workstation::vim
+- ccb_workstation::git
