@@ -6,10 +6,7 @@ execute "brew install macvim" do
   not_if "brew list | grep '^macvim$'"
 end
 
-execute "Link MacVim to /Applications" do
-  user WS_USER
-  command "brew linkapps"
-end
+brew_linkapps
 
 ruby_block "test to see if MacVim link worked" do
   block do
