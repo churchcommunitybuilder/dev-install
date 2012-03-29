@@ -12,4 +12,4 @@ recipes:
 - ccb_workstation::s3cmd
 - ccb_workstation::yuicompressor
 - pivotal_workstation::imagemagick
-- ccb_workstation::gearman
+- ccb_workstation::bbt

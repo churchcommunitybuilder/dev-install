@@ -29,7 +29,7 @@ end
 ruby_block "Checking that gearman is running" do
   block do
     Timeout::timeout(60) do
-      until %x[gearadmin --status].trim() == '.'
+      until %x[gearadmin --status].strip == '.'
         sleep 1
       end
     end
