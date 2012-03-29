@@ -2,7 +2,7 @@ include_recipe "ccb_workstation::rvm"
 include_recipe "ccb_workstation::gearman"
 include_recipe "ccb_workstation::mysql"
 
-directory "#{WS_HOME}/CCB/src" do
+directory "/Users/#{WS_USER}/CCB/src" do
   owner WS_USER
   action :create
 end
