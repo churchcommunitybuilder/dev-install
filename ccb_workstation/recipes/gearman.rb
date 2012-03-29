@@ -20,16 +20,16 @@ ruby_block "copy gearman plist to ~/Library/LaunchAgents" do
   end
 end
 
-execute "load the mysql plist into the mac daemon startup thing" do
+execute "load the gearman plist into the mac daemon startup thing" do
   command "launchctl load -w #{WS_HOME}/Library/LaunchAgents/#{GEARMAN_LAUNCHD_PLIST}"
   user WS_USER
   not_if "launchctl list homebrew.mxcl.gearman"
 end
 
-ruby_block "Checking that mysql is running" do
+ruby_block "Checking that gearman is running" do
   block do
     Timeout::timeout(60) do
-      until %x[gearadmin --status] == '.'
+      until %x[gearadmin --status].trim() == '.'
         sleep 1
       end
     end
