@@ -5,6 +5,7 @@ include_recipe "ccb_workstation::mysql"
 directory "/Users/#{WS_USER}/CCB/src" do
   owner WS_USER
   action :create
+  recursive true
 end
 
 git "CCB/src/bbt" do
