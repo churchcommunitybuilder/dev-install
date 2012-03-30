@@ -72,6 +72,7 @@ class Chef::Recipe
     execute "#{BREW_CMD} tap" do
       user WS_USER
       command "#{BREW_CMD} tap #{keg}"
+      creates "/usr/local/Library/Taps/josegonzalez-php"
     end
   end
 end
