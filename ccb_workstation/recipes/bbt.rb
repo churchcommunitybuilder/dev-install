@@ -42,10 +42,9 @@ bash "install_gearman-mysql-udf" do
   not_if { File.exists? "#{%x[brew --prefix mysql]}/lib/plugin/libgearman_mysql_udf.0.so" }
 end
 
-mysql_connection_info = {:host => "localhost", :username => 'root', :password => node[:mysql][:default_root_password]}
 
 mysql_database "create gearman mysql udfs" do
-  connection mysql_connection_info
+  connection node[:mysql][:connection_info]
   action :query
   sql <<-SQL
     CREATE FUNCTION gman_do RETURNS STRING
