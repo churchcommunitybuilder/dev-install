@@ -54,3 +54,7 @@ execute "insert time zone info" do
   command "mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -uroot -p#{node[:mysql][:default_root_password]} mysql"
   not_if "mysql -uroot -p#{node[:mysql][:default_root_password]} -e 'select * from time_zone_name' | grep -q UTC"
 end
+
+gem_package "mysql" do
+  action :install
+end
