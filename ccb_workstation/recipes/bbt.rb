@@ -25,7 +25,7 @@ end
 include_recipe "ccb_workstation::gearman"
 
 remote_file "/tmp/gearman-mysql-udf-#{node[:gearman_mysql_udf][:version]}.tar.gz" do
-  source "https://launchpad.net/gearman-mysql-udf-#{node[:gearman_mysql_udf][:version]}.tar.gz"
+  source "https://launchpad.net/gearman-mysql-udf/trunk/#{node[:gearman_mysql_udf][:version]}/+download/gearman-mysql-udf-#{node[:gearman_mysql_udf][:version]}.tar.gz"
   checksum node[:gearman_mysql_udf][:checksum]
   notifies :run, "bash[install_gearman-mysql-udf]", :immediately
 end
