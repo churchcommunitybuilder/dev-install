@@ -14,5 +14,6 @@ recipes:
 - ccb_workstation::s3cmd
 - ccb_workstation::yuicompressor
 - ccb_workstation::imagemagick
+- ccb_workstation::autoconf
 - ccb_workstation::bbt
 - ccb_workstation::php
