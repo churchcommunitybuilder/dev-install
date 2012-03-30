@@ -1,5 +1,11 @@
+node.override["rvm"]["rubies"] = { "ruby-1.9.2-p180" => { :command_line_options => "--with-gcc=clang" } }
+
 include_recipe "ccb_workstation::rvm"
-include_recipe "ccb_workstation::gearman"
+
+node["rvm"]["rubies"].each do |ruby_version_string, options|
+  rvm_ruby_install(ruby_version_string,options)
+end
+
 include_recipe "ccb_workstation::mysql"
 
 directory "#{WS_HOME}/CCB/src" do
@@ -16,4 +22,20 @@ end
 #   user WS_USER
 # end
 
+include_recipe "ccb_workstation::gearman"
 
+remote_file "/tmp/gearman-mysql-udf-#{node[:gearman_mysql_udf][:version]}.tar.gz" do
+  source "https://launchpad.net/gearman-mysql-udf-#{node[:gearman_mysql_udf][:version]}.tar.gz"
+  checksum node[:gearman_mysql_udf][:checksum]
+  notifies :run, "bash[install_gearman-mysql-udf]", :immediately
+end
+
+bash "install_gearman-mysql-udf" do
+  user "root"
+  cwd "/tmp"
+  code <<-EOH
+    tar -zxf gearman-mysql-udf-#{node[:gearman_mysql_udf][:version]}.tar.gz
+    (cd gearman-mysql-udf-#{node[:gearman_mysql_udf][:version]}/ && ./configure --with-mysql=$(brew --prefix mysql)/bin/mysql_config --libdir=$(brew --prefix mysql)/lib/plugin && make && make install)
+  EOH
+  action :nothing
+end
