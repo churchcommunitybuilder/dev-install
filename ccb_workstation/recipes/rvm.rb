@@ -13,6 +13,12 @@ run_unless_marker_file_exists(marker_version_string_for("rvm")) do
     owner WS_USER
   end
 
+  directory "#{RVM_HOME}/src" do
+    action :create
+    owner WS_USER
+    recursive true
+  end
+
   directory "#{RVM_HOME}/src/rvm" do
     action :create
     owner WS_USER
@@ -35,9 +41,9 @@ run_unless_marker_file_exists(marker_version_string_for("rvm")) do
     user WS_USER
   end
 
-  %w{readline autoconf openssl zlib}.each do |rvm_pkg|
+  %w{readline autoconf openssl zlib libyaml}.each do |rvm_pkg|
     execute "install rvm pkg: #{rvm_pkg}" do
-      command "#{::RVM_COMMAND} pkg install #{rvm_pkg}"
+      command "#{RVM_COMMAND} pkg install #{rvm_pkg}"
       user WS_USER
     end
   end
