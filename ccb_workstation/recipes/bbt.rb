@@ -2,9 +2,9 @@ node.override["rvm"]["rubies"] = { "ruby-1.9.2-p180" => { :command_line_options 
 
 include_recipe "ccb_workstation::rvm"
 
-node["rvm"]["rubies"].each do |ruby_version_string, options|
-  rvm_ruby_install(ruby_version_string,options)
-end
+# node["rvm"]["rubies"].each do |ruby_version_string, options|
+#   rvm_ruby_install(ruby_version_string,options)
+# end
 
 include_recipe "ccb_workstation::mysql"
 
@@ -39,3 +39,29 @@ bash "install_gearman-mysql-udf" do
   EOH
   action :nothing
 end
+
+mysql_connection_info = {:host => "localhost", :username => 'root', :password => node[:mysql][:default_root_password]}
+
+mysql_database "create gearman mysql udfs" do
+  connection mysql_connection_info
+  action :query
+  sql <<-SQL
+    CREATE FUNCTION gman_do RETURNS STRING
+          SONAME "libgearman_mysql_udf.so";
+    CREATE FUNCTION gman_do_high RETURNS STRING
+          SONAME "libgearman_mysql_udf.so";
+    CREATE FUNCTION gman_do_low RETURNS STRING
+          SONAME "libgearman_mysql_udf.so";
+    CREATE FUNCTION gman_do_background RETURNS STRING
+          SONAME "libgearman_mysql_udf.so";
+    CREATE FUNCTION gman_do_high_background RETURNS STRING
+          SONAME "libgearman_mysql_udf.so";
+    CREATE FUNCTION gman_do_low_background RETURNS STRING
+          SONAME "libgearman_mysql_udf.so";
+    CREATE AGGREGATE FUNCTION gman_sum RETURNS INTEGER
+          SONAME "libgearman_mysql_udf.so";
+    CREATE FUNCTION gman_servers_set RETURNS STRING
+          SONAME "libgearman_mysql_udf.so";
+  SQL
+end
+
