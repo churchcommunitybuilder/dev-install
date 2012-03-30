@@ -8,6 +8,11 @@ rvm_git_revision_hash  = version_string_for("rvm")
 bash_profile_include("rvm")
 
 run_unless_marker_file_exists(marker_version_string_for("rvm")) do
+  directory "#{RVM_HOME}" do
+    action :create
+    owner WS_USER
+  end
+
   directory "#{RVM_HOME}/src/rvm" do
     action :create
     owner WS_USER
