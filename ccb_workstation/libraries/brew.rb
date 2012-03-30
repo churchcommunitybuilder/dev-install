@@ -65,4 +65,13 @@ class Chef::Recipe
       command "#{BREW_CMD} linkapps"
     end
   end
+
+  def brew_tap(keg)
+    include_recipe "ccb_workstation::homebrew"
+
+    execute "#{BREW_CMD} tap" do
+      user WS_USER
+      command "#{BREW_CMD} tap #{keg}"
+    end
+  end
 end
