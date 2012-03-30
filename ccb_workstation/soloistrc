@@ -2,15 +2,16 @@ cookbook_paths:
 - ../
 
 recipes:
+- ccb_workstation::bash_path_order
 - ccb_workstation::sudoers
-- pivotal_workstation::homebrew
+- ccb_workstation::homebrew
 - ccb_workstation::rvm
-- pivotal_workstation::java
+#- pivotal_workstation::java
 #- ccb_workstation::vim
 - ccb_workstation::git
-- pivotal_workstation::ack
+- ccb_workstation::ack
 - ccb_workstation::ctags
 - ccb_workstation::s3cmd
 - ccb_workstation::yuicompressor
-- pivotal_workstation::imagemagick
+- ccb_workstation::imagemagick
 - ccb_workstation::bbt
