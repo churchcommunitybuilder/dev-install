@@ -28,6 +28,7 @@ remote_file "/tmp/gearman-mysql-udf-#{node[:gearman_mysql_udf][:version]}.tar.gz
   source "https://launchpad.net/gearman-mysql-udf/trunk/#{node[:gearman_mysql_udf][:version]}/+download/gearman-mysql-udf-#{node[:gearman_mysql_udf][:version]}.tar.gz"
   checksum node[:gearman_mysql_udf][:checksum]
   notifies :run, "bash[install_gearman-mysql-udf]", :immediately
+  not_if { File.exists? "#{%x[brew --prefix mysql]}/lib/plugin/libgearman_mysql_udf.0.so" }
 end
 
 bash "install_gearman-mysql-udf" do
