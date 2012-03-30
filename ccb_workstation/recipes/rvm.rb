@@ -1,4 +1,4 @@
-include_recipe "pivotal_workstation::bash_profile"
+include_recipe "ccb_workstation::bash_profile"
 
 rvm_git_revision_hash  = version_string_for("rvm")
 

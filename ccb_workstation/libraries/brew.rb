@@ -1,6 +1,6 @@
 class Chef::Recipe
   def brew_install(package, opts={})
-    include_recipe "pivotal_workstation::homebrew"
+    include_recipe "ccb_workstation::homebrew"
 
     if brew_installed?(package) && (brew_outdated?(package) || brew_has_multiple_versions_installed?(package))
       execute "brew remove --force #{package} && brew install #{package} #{opts[:brew_args]}" do
@@ -22,7 +22,7 @@ class Chef::Recipe
   end
 
   def brew_installed?(package)
-    include_recipe "pivotal_workstation::homebrew"
+    include_recipe "ccb_workstation::homebrew"
 
     installed=(system("brew list #{package} > /dev/null") || brew_has_multiple_versions_installed?(package))
     Chef::Log.debug("brew package #{package} " + (installed ? "IS" : "IS NOT") + " installed.")
@@ -36,7 +36,7 @@ class Chef::Recipe
   end
 
   def brew_remove(package)
-    include_recipe "pivotal_workstation::homebrew"
+    include_recipe "ccb_workstation::homebrew"
 
     brew_installed = `brew list | grep #{package}`
     unless brew_installed.empty?
@@ -48,7 +48,7 @@ class Chef::Recipe
   end
 
   def brew_update
-    include_recipe "pivotal_workstation::homebrew"
+    include_recipe "ccb_workstation::homebrew"
 
     execute "brew update" do
       user WS_USER
@@ -57,7 +57,7 @@ class Chef::Recipe
   end
 
   def brew_linkapps
-    include_recipe "pivotal_workstation::homebrew"
+    include_recipe "ccb_workstation::homebrew"
 
     execute "brew linkapps" do
       user WS_USER

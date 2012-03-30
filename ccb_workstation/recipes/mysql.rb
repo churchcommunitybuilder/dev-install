@@ -1,9 +1,9 @@
 #http://solutions.treypiepmeier.com/2010/02/28/installing-mysql-on-snow-leopard-using-homebrew/
 require 'pathname'
 
-include_recipe "pivotal_workstation::homebrew"
+include_recipe "ccb_workstation::homebrew"
 
-directory "/Users/#{WS_USER}/Library/LaunchAgents" do
+directory "#{WS_LIBRARY}/LaunchAgents" do
   owner WS_USER
   action :create
 end
@@ -15,7 +15,7 @@ active_mysql = Pathname.new("/usr/local/bin/mysql").realpath
 ruby_block "copy mysql plist to ~/Library/LaunchAgents" do
   block do
     plist_location = (active_mysql + "../../"+"homebrew.mxcl.mysql.plist").to_s
-    destination = "#{WS_HOME}/Library/LaunchAgents/homebrew.mxcl.mysql.plist"
+    destination = "#{WS_LIBRARY}/LaunchAgents/homebrew.mxcl.mysql.plist"
     system("cp #{plist_location} #{destination} && chown #{WS_USER} #{destination}") || raise("Couldn't find the plist")
   end
 end
@@ -30,7 +30,7 @@ ruby_block "mysql_install_db" do
 end
 
 execute "load the mysql plist into the mac daemon startup thing" do
-  command "launchctl load -w #{WS_HOME}/Library/LaunchAgents/homebrew.mxcl.mysql.plist"
+  command "launchctl load -w #{WS_LIBRARY}/LaunchAgents/homebrew.mxcl.mysql.plist"
   user WS_USER
   not_if "launchctl list com.mysql.mysqld"
 end

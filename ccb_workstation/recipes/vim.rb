@@ -1,5 +1,3 @@
-include_recipe "pivotal_workstation::homebrew"
-
 brew_install "macvim"
 
 brew_linkapps
