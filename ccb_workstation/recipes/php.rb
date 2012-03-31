@@ -31,3 +31,22 @@ php_pear "PHPUnit" do
   channel phpunit_channel.channel_name
   action :install
 end
+
+
+remote_file "/tmp/ZendFramework-#{node[:zend_framework][:version]}.tar.gz" do
+  action :create_if_missing
+  source "http://framework.zend.com/releases/ZendFramework-#{node[:zend_framework][:version]}/ZendFramework-#{node[:zend_framework][:version]}-minimal.zip"
+  checksum node[:zend_framework][:checksum]
+  notifies :run, "bash[install_zend_framework]", :immediately
+end
+
+bash "install_zend_framework" do
+  user "root"
+  cwd "/tmp"
+  code <<-EOH
+    unzip ZendFramework-#{node[:zend_framework][:version]}.zip
+    cp -R ZendFramework-#{node[:zend_framework][:version]}/library/Zend /usr/lib/php/
+  EOH
+  action :nothing
+end
+
