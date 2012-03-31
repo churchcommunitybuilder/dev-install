@@ -33,7 +33,7 @@ php_pear "PHPUnit" do
 end
 
 
-remote_file "/tmp/ZendFramework-#{node[:zend_framework][:version]}.tar.gz" do
+remote_file "/tmp/ZendFramework-#{node[:zend_framework][:version]}.zip" do
   action :create_if_missing
   source "http://framework.zend.com/releases/ZendFramework-#{node[:zend_framework][:version]}/ZendFramework-#{node[:zend_framework][:version]}-minimal.zip"
   checksum node[:zend_framework][:checksum]
