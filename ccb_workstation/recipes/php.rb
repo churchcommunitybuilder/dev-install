@@ -45,7 +45,7 @@ bash "install_zend_framework" do
   cwd "/tmp"
   code <<-EOH
     unzip ZendFramework-#{node[:zend_framework][:version]}.zip
-    cp -R ZendFramework-#{node[:zend_framework][:version]}/library/Zend /usr/lib/php/
+    cp -R ZendFramework-#{node[:zend_framework][:version]}-minimal/library/Zend /usr/lib/php/
   EOH
   action :nothing
 end
