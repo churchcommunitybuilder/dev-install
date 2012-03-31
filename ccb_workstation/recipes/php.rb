@@ -5,7 +5,7 @@ brew_tap "josegonzalez/homebrew-php"
 brew_install "gearman-php"
 brew_install "imagick-php"
 brew_install "mcrypt-php"
-brew_install "oauth-php"
+#brew_install "oauth-php"
 brew_install "xdebug-php"
 
 run_unless_marker_file_exists("pear") do
